@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "8"
+  - "10"
 
 cache:
   directories:
@@ -12,6 +12,7 @@ branches:
 
 install:
   - npm install
+  - npm run build
   - npm run export
 
 script:
