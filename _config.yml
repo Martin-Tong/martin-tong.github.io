@@ -49,7 +49,4 @@ exclude:
    - Gemfile
    - Gemfile.lock
    - node_modules/
-   - dependence/bundle/
-   - dependence/cache/
-   - dependence/gems/
-   - dependence/ruby/
+   - dependence/
