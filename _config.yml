@@ -27,7 +27,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
-github_username:  Martin-Tong
+github_username:  jekyll
 
 # Build settings
 theme: minima
@@ -49,4 +49,7 @@ exclude:
    - Gemfile
    - Gemfile.lock
    - node_modules/
-   - dependence/
+   - vendor/bundle/
+   - vendor/cache/
+   - vendor/gems/
+   - vendor/ruby/
