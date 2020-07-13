@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body>
+    <style>
+      body {
+        background-color: #f2f2f2;
+        -moz-user-select: none;
+        user-select: none;
+        -webkit-user-select: none;
+        background-image: url(../../assets/570daa012808c.png);
+        background-repeat: no-repeat;
+        background-position: right;
+      }
+    </style>
+    <main class="page-content" aria-label="Content">
+      <div class="screen-center">
+        {{ content }}
+      </div>
+    </main>
+
+  </body>
+
+</html>

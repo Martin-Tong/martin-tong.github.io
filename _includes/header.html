@@ -1,0 +1,28 @@
+<header class="site-header" role="banner">
+
+  <div class="global-nav">
+    <div class="logo">
+      <span class="avatar">
+        <img src="{{ "/assets/avatar.png" | relative_url }}" width="100%" height="100%">
+      </span>
+    </div>
+    <nav>
+    <ul>
+      {% for route in site.routes %}        
+        {% if page.route == route.name %}
+        <li class="avtive">
+          <a class="post-link" href="{{ route.path }}">{{ route.name }}</a>
+        </li>
+        {% else %}
+        <li>
+          <a class="post-link" href="{{ route.path }}">{{ route.name }}</a>
+        </li>
+        {% endif %}       
+      {% endfor %}
+    </ul>
+    </nav>
+  </div>
+  <script>
+    $('li.avtive').click(e=>e.preventDefault())
+  </script>
+</header>
