@@ -18,8 +18,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Martin Tong's Front end
-email: 1933981377@qq.com
+title: Martin Tong's Front end life
+email: martin_tong@30erli.cn
 description: >- # this means to ignore newlines until "baseurl:"
   一名半路出道的前端爱好者。热爱前端事业，关注前端技术，因为热爱所以把全部精力投入到前端相关的学习实践当中。
   持续学习，温故知新，保持这份热情砥砺前行。
