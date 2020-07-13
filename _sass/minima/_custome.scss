@@ -20,6 +20,9 @@ body {
         padding-right: $spacing-unit / 2;
         padding-left: $spacing-unit / 2;
       }
+    @include media-query($on-palm) {
+      width: 80%;
+    }
 }
 
 %clearfix:after {
