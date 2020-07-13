@@ -6,11 +6,40 @@
     body {
       background-position: 100% 50%;
       background-repeat: no-repeat;
+      overflow-x: hidden;
     }
   </style>
+  <script defer src="/assets/index.js"></script>
   <body>
 
-
+    <header class="postpage-nav">
+      <div class="postpage-nav-wrap">
+      <div class="avatar">
+        <img src="{{"/assets/avatar.png" | relative_url }}" />
+      </div>
+      <div class="menu">
+        <span class="hr"></span>
+        <span class="hr"></span>
+        <span class="hr"></span>
+      </div>
+      <nav id="postpage-nav">
+        <ul>
+          {% for route in site.routes %}
+            {% assign oo = route.name | downcase %}        
+            {% if page.category == oo  %}
+              <li class="avtive">
+                <a href="{{ route.path }}">{{ route.name }}</a>
+              </li>
+            {% else %}
+              <li>
+                <a href="{{ route.path }}">{{ route.name }}</a>
+              </li>
+            {% endif %}       
+          {% endfor %}
+        </ul>
+      </nav>
+      </div>
+      </header>
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
         {{ content }}

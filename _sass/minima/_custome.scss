@@ -73,6 +73,7 @@ body {
     line-height: 100px;
     width: 65%;
     margin-top: 50px;
+    display: block;
     ul {
       float: left;
       list-style: none;
@@ -157,7 +158,8 @@ li.avtive {
     width: 100%;
     height: 3px;
     left: -2px;
-    background-color: #da0a7a;     
+    bottom: -4px;
+    background-color: #2a7ae2;     
   }
 }
 .post-tag {
@@ -166,5 +168,106 @@ li.avtive {
   cursor: pointer;
   &:hover {
     color: black;
+  }
+}
+
+nav {
+  max-width: calc(#{$content-width} - #{$spacing-unit}*2);
+  float: left;
+  margin-top: 25px;
+  height: 50px;
+  line-height: 50px;
+  ul li {
+    line-height: 100%;
+    display: inline;
+    margin-right: $spacing-unit;
+    position: relative;
+    a {
+      line-height: 100%;
+      @include relative-font-size(1.4);
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+} 
+
+.postpage-nav {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100px;
+  padding: 0 calc(#{$spacing-unit}*2);
+  background-image: url(/assets/pattern.svg);
+  .postpage-nav-wrap {
+    max-width: calc(#{$content-width} - #{$spacing-unit}*2);
+    margin: 0 auto;
+    .avatar {
+      width: 100px;
+      height: 100px;
+      float: left;
+      margin-right: 100px;
+    }
+    @extend %clearfix;
+  }
+  @include media-query($on-palm) {
+    padding: 0;
+    position: relative;
+    border-bottom: 1px solid #ffffff;
+    .avatar {
+      margin-left: 12px;
+    }
+    .menu {
+      margin-right: 12px;
+      cursor: pointer;
+    }
+    nav {
+      border-top: 1px solid gray;
+      display: block;
+      top: 100px;
+      margin-top: 0;
+      position: absolute;
+      width: 100%;
+      height: 360px;
+      background-image: url(/assets/pattern.svg);;
+      ul {
+        height: 100%;
+        margin: 0;
+        padding: 36px;
+        box-sizing: border-box;
+        li {
+        display: block;
+        text-align: center;
+        height: 36px;
+        margin-bottom: 36px;
+        }
+      }
+    }
+    li.avtive::after {
+      visibility: hidden;;
+    }
+  } 
+}
+
+.menu {
+  width: 50px;
+  height: 50px;
+  float: right;
+  margin-top: 25px;
+  border: 1px solid #fff;
+  padding: 6px;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+  visibility: hidden;
+  .hr {
+    background-color: #ffffff;
+    display: inline-block;
+    height: 4px;
+  }
+  @include media-query($on-palm) {
+    visibility: visible;
   }
 }
