@@ -6,8 +6,9 @@
     )
 
 let a = window.matchMedia('(max-width: 600px)')
-a.addEventListener(function(e) {
+function a1(e) {
     if(!e.matches) {
         $('nav').css('display', 'block')
     }
-})
+}
+a.addListener(a1)
