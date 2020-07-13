@@ -4,6 +4,11 @@ body {
   background-repeat: repeat-y;
 }
 
+article.post {
+  word-break: break-all;
+  overflow-x: hidden;
+}
+
 .screen-center {
     max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
     padding-right: $spacing-unit;
