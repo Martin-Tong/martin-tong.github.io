@@ -50,6 +50,7 @@ article.post {
   }
 }
 
+//分类页导航
 .global-nav {
   height: 200px;
   padding: 0 calc(#{$spacing-unit}*2);
@@ -116,7 +117,6 @@ article.post {
     nav {
       width: 100%;
       margin-top: 0;
-      display: none;
       ul {
         float: none;
         width: auto;

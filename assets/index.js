@@ -1,4 +1,6 @@
-
+document.addEventListener('DOMContentLoaded', function(e){
+    console.log(e)
+})
     $('.menu').click(
         function() {
             $('nav').slideToggle()
