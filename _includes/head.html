@@ -3,6 +3,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="baidu-site-verification" content="2GRC8tOxQ2" />
+  {%- if page.keywords -%}
+    <meta name="keywords" content="{{ page.keywords }}">
+  {%- endif -%}
   <link rel="icon" type="image/x-icon" href="{{"/assets/avatar.ico" | relative_url}}">
   <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
   <script type="text/javascript" data-vue-meta="true">

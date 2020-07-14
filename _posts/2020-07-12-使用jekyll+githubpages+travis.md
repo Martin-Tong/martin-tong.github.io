@@ -3,6 +3,7 @@ layout: post
 category: blog
 tags: tools 
 author: Martin Tong
+keywords: jekyll travis github-pages 个人博客 静态网页 自动发布个人博客
 ---
 
 >项目用到的工具：
