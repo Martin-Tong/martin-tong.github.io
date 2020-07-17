@@ -1,4 +1,4 @@
-(function() {
+
     $('.menu').click(
         function() {
             $('nav').slideToggle()
@@ -15,7 +15,6 @@
         setTimeout(function() {
             $('.loading-mask').fadeOut()
             $(document.body).css('overflowY', 'scroll')
-        }, 0)
-        
+        }, 0)       
     })
-})()
+
