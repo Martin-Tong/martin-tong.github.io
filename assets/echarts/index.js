@@ -21,6 +21,7 @@ let echartsObj = {
     initial() {
         this._instances.forEach(item => {
             let _v = echarts.init(item)
+            _v.setOption(echartsOption)
             item._ecins = _v
         })
     },
@@ -53,94 +54,13 @@ let echartsOption = {
             align: 'center'
         }
     },
-    yAxis: {},
-    series: [
-        {
-            name: '测试bar',
-            type: 'bar',
-            encode: {
-                x: [0],
-                y: [1],
-                tooltip: [1]
-            }
-        },
-        {
-            name: '测试line',
-            type: 'line',
-            encode: {
-                y: [2],
-                tooltip: [2]
-            }
-        },
-        {
-            name: '测试pie',
-            type: 'pie',
-
-            encode: {
-                y: [3],
-                tooltip: [3]
-            }
-        }
-    ]
+    yAxis: {}
 }
 
 window.addEventListener('DOMContentLoaded', function() {
     $('.source-code').each(function(item) {
-        console.log( $(this).parent().next('pre').children())
         $(this).parent().next('pre').children().append(
-`console.log('prism')
-let echartsOption = {
-    title: {
-        text: 'ECharts简单示例', //dsa
-         left: 'center'
-    },
-    dataset : {
-        source: ${JSON.stringify(mockData.key)}
-    },
-    grid: {
-        height: 'auto',
-        width: '80%',
-        left: 'center'
-    },
-    tooltip: {},
-    legend: {
-        right: '2%'
-    },
-    xAxis: {
-        type: 'category',
-        axisLabel: {
-            align: 'center'
-        }
-    },
-    yAxis: {},
-    series: [
-        {
-            name: '测试bar',
-            type: 'bar',
-            encode: {
-                x: [0],
-                y: [1],
-                tooltip: [1]
-            }
-        },
-        {
-            name: '测试line',
-            type: 'line',
-            encode: {
-                y: [2],
-                tooltip: [2]
-            }
-        },
-        {
-            name: '测试pie',
-            type: 'pie',                      
-            encode: {
-                y: [3],
-                tooltip: [3]
-            }
-        }
-    ]
-}`
+            ",dataset: {\n   source: " + JSON.stringify(mockData.key) + "\n}"
         )
         $(this).click(function() {
             $(this).parent().next('pre').slideToggle()
@@ -199,15 +119,16 @@ window.onload = function() {
         threshold: 0.0
     })
 
-    echartsObj.setOption(document.querySelector('#echarts-ex-1'), echartsOption)
-
     interObserver.observe(document.querySelector('#echarts-ex-1'))
 }
 
+//加载依赖
 let script = document.createElement('script')
 let script2 = document.createElement('script')
+let script3 = document.createElement('script')
 script.src = 'https://cdn.jsdelivr.net/npm/prismjs@1.20.0/components/prism-core.min.js'
 script2.src = 'https://cdn.jsdelivr.net/npm/prismjs@1.20.0/plugins/autoloader/prism-autoloader.min.js'
-document.body.append(script, script2)
+script3.src = 'https://cdn.jsdelivr.net/npm/prismjs@1.20.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'
+document.body.append(script, script2, script3)
 
 })()

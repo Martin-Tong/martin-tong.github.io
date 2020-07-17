@@ -12,6 +12,9 @@ pre[class*="language-"] {
     display: none;
     max-height: 480px;
     font-size: 0.4em !important;
+    &.static {
+        display: block;
+    }
 }
 .echarts-ex {
     width: 100%;
