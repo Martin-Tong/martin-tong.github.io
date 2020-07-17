@@ -2,6 +2,12 @@
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
   {%- include head.html -%}
+  {% if page.style %}
+    {% assign styles = page.style | split: ', ' %}
+    {% for style in styles %}
+      <link rel="stylesheet" href="{{ style }}">
+    {% endfor %}
+  {% endif %}
   <style>
     body {
       background-position: 100% 50%;
@@ -9,6 +15,12 @@
       overflow-x: hidden;
     }
   </style>
+  {% if page.dephead %}
+    {% assign headdeps = page.dephead | split: ", " %}
+    {% for dependence in headdeps %}
+      <script src="{{ dependence }}"></script>
+    {% endfor %}
+  {% endif %}
   <script defer src="/assets/index.js"></script>
   <body>
 
@@ -48,6 +60,12 @@
 
     {%- include footer.html -%}
 
+    {% if page.depbody %}
+      {% assign bodydeps = page.depbody | split: ", " %}
+      {% for dependence in bodydeps %}
+        <script src="{{ dependence }}"></script>
+      {% endfor %}
+    {% endif %}
   </body>
 
 </html>
