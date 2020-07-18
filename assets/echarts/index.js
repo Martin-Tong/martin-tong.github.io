@@ -32,35 +32,69 @@ let echartsObj = {
 
 let mockData = Mock.mock({'key|8-16': [['@cword(3)', '@natural(0,100)', '@natural(0,100)', '@natural(0,100)']]})
 let echartsOption = {
-    title: {
-        text: 'ECharts简单示例', //dsa
-        left: 'center'
+    baseOption: {
+        title: {
+            text: 'ECharts简单示例', //dsa
+            left: 'center'
+        },
+        dataset : {
+            source: mockData.key
+        },
+        grid: {
+            height: 'auto',
+            width: '80%',
+            left: 'center'
+        },
+        tooltip: {},
+        legend: {
+            right: '2%'
+        },
+        xAxis: {
+            type: 'category',
+            axisLabel: {
+                align: 'center'
+            }
+        },
+        yAxis: {}
     },
-    dataset : {
-        source: mockData.key
-    },
-    grid: {
-        height: 'auto',
-        width: '80%',
-        left: 'center'
-    },
-    tooltip: {},
-    legend: {
-        right: '2%'
-    },
-    xAxis: {
-        type: 'category',
-        axisLabel: {
-            align: 'center'
+    media: [
+        {
+            query: {
+                maxWidth: 600
+            },
+            option: {
+                title: {
+                    text: 'ECharts简单示例', //dsa
+                    left: 'left'
+                },
+                dataset : {
+                    source: mockData.key
+                },
+                grid: {
+                    height: 'auto',
+                    width: '100%',
+                    left: 'center'
+                },
+                tooltip: {},
+                legend: {
+                    right: '0'
+                },
+                xAxis: {
+                    type: 'category',
+                    axisLabel: {
+                        align: 'center'
+                    }
+                },
+                yAxis: {}
+            }
         }
-    },
-    yAxis: {}
+    ]
 }
 
 window.addEventListener('DOMContentLoaded', function() {
     $('.source-code').each(function(item) {
-        $(this).parent().next('pre').children().append(
-            ",dataset: {\n   source: " + JSON.stringify(mockData.key) + "\n}"
+        $(this).parent().next('pre').children().prepend(
+            "dataset: {\n   source: " + JSON.stringify(mockData.key) + "\n},"
         )
         $(this).click(function() {
             $(this).parent().next('pre').slideToggle()

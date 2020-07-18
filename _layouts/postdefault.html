@@ -21,8 +21,11 @@
       <script src="{{ dependence }}"></script>
     {% endfor %}
   {% endif %}
-  <body>
+  <body class="loading">
     {% include loading.html %}
+
+    <!-- 文章主题start -->
+    <div class="content">
     <header class="postpage-nav">
       <div class="postpage-nav-wrap">
       <div class="avatar">
@@ -66,6 +69,8 @@
       {% endfor %}
     {% endif %}
     <script src="/assets/index.js"></script>
+    </div>
+    <!-- 文章主题end -->
   </body>
 
 </html>
