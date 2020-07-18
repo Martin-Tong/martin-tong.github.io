@@ -32,32 +32,19 @@ let echartsObj = {
 
 let mockData = Mock.mock({'key|8-16': [['@cword(3)', '@natural(0,100)', '@natural(0,100)', '@natural(0,100)']]})
 let echartsOption = {
-    baseOption: {
+    //baseOption: {
         title: {
-            text: 'ECharts简单示例', //dsa
-            left: 'center'
+            left: 'left'
         },
         dataset : {
             source: mockData.key
         },
-        grid: {
-            height: 'auto',
-            width: '80%',
-            left: 'center'
-        },
         tooltip: {},
         legend: {
             right: '2%'
-        },
-        xAxis: {
-            type: 'category',
-            axisLabel: {
-                align: 'center'
-            }
-        },
-        yAxis: {}
-    },
-    media: [
+        }
+    //},
+    /* media: [
         {
             query: {
                 maxWidth: 600
@@ -88,13 +75,13 @@ let echartsOption = {
                 yAxis: {}
             }
         }
-    ]
+    ] */
 }
 
 window.addEventListener('DOMContentLoaded', function() {
     $('.source-code').each(function(item) {
-        $(this).parent().next('pre').children().prepend(
-            "dataset: {\n   source: " + JSON.stringify(mockData.key) + "\n},"
+        $(this).parent().next('pre').children().append(
+            "dataset: {\n   source: " + JSON.stringify(mockData.key) + "\n}}"
         )
         $(this).click(function() {
             $(this).parent().next('pre').slideToggle()
@@ -108,7 +95,7 @@ window.onload = function() {
     echartsObj.initial()
 
     //为dom绑定用到的series
-    $(echartsObj.instance).attr('data-series', JSON.stringify([
+    /* $(echartsObj.instance).attr('data-series', JSON.stringify([
         {
             name: '测试bar',
             type: 'bar',
@@ -135,25 +122,27 @@ window.onload = function() {
                 tooltip: [3]
             }
         }
-    ]))
+    ])) */
 
-
-    let interObserver = new IntersectionObserver(function(entries, observer) {
-        let target = entries[0].target
-        if (entries[0].intersectionRatio >0) {
-            target._ecins.setOption({
-                series: JSON.parse($(target).attr('data-series'))
-            })
-            target._renderred = true
-            observer.unobserve(target)
-        }
-    }, {
-        root: null,
-        rootMargin: '0px 0px 0px 0px',
-        threshold: 0.0
+    echartsObj._instances.forEach(item => {
+        let interObserver = new IntersectionObserver(function(entries, observer) {
+            let target = entries[0].target,
+                id = target.id
+            /* 还原被包裹在字符串里的js对象：eval("(" + strObj + ")") */
+            if (entries[0].intersectionRatio >0) {
+                let options = eval("(" + $(`[data-related='#${id}']`)[0].textContent + ")")
+                target._ecins.setOption(options)
+                target._renderred = true
+                observer.unobserve(target)
+            }
+        }, {
+            root: null,
+            rootMargin: '0px 0px 0px 0px',
+            threshold: 0.0
+        })
+        interObserver.observe(item)
     })
-
-    interObserver.observe(document.querySelector('#echarts-ex-1'))
+    
 }
 
 //加载依赖
