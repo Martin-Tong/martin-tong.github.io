@@ -30,6 +30,21 @@ let echartsObj = {
     }
 }
 
+function getVirtulData(year) {
+    year = year || '2020';
+    var date = +echarts.number.parseDate(year + '-01-01');
+    var end = +echarts.number.parseDate(year + '-12-31');
+    var dayTime = 3600 * 24 * 1000;
+    var data = [];
+    for (var time = date; time <= end; time += dayTime) {
+        data.push([
+            echarts.format.formatTime('yyyy-MM-dd', time),
+            Math.floor(Math.random() * 10000)
+        ]);
+    }
+    return data;
+}
+
 let mockData = Mock.mock({'key|8-16': [['@cword(3)', '@natural(0,100)', '@natural(0,100)', '@natural(0,100)']]})
 let echartsOption = {
     //baseOption: {
@@ -77,6 +92,7 @@ let echartsOption = {
         }
     ] */
 }
+//let webWorker = new Worker('/assets/echarts/w2.js')
 
 window.addEventListener('DOMContentLoaded', function() {
     $('.source-code').each(function(item) {
@@ -129,23 +145,31 @@ window.onload = function() {
             let target = entries[0].target,
                 id = target.id
             /* 还原被包裹在字符串里的js对象：eval("(" + strObj + ")") */
-            if (entries[0].intersectionRatio >0) {
+            if (entries[0].intersectionRatio > 0) {
                 let options = eval("(" + $(`[data-related='#${id}']`)[0].textContent + ")")
                 target._ecins.setOption(options)
+                if (id == 'echarts-ex-2') {
+                    target._ecins.setOption({
+                        dataset: {
+                            source: getVirtulData()
+                        }
+                    })
+                }
                 target._renderred = true
+                console.log(`${target.id} observered`)
                 observer.unobserve(target)
             }
         }, {
             root: null,
             rootMargin: '0px 0px 0px 0px',
-            threshold: 0.0
+            threshold: 0.5
         })
         interObserver.observe(item)
     })
     
 }
 
-//加载依赖
+//加载依赖prismjs
 let script = document.createElement('script')
 let script2 = document.createElement('script')
 let script3 = document.createElement('script')

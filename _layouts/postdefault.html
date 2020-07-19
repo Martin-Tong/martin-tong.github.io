@@ -62,6 +62,8 @@
 
     {%- include footer.html -%}
 
+    </div>
+    <!-- 文章主题end -->
     {% if page.depbody %}
       {% assign bodydeps = page.depbody | split: ", " %}
       {% for dependence in bodydeps %}
@@ -69,8 +71,6 @@
       {% endfor %}
     {% endif %}
     <script src="/assets/index.js"></script>
-    </div>
-    <!-- 文章主题end -->
   </body>
 
 </html>
