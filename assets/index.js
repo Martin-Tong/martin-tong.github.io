@@ -16,7 +16,9 @@
 
     window.addEventListener('load', function() {
         setTimeout(function() {
-           $('body').removeClass('loading')
+            $('.loading-mask').fadeOut(500, function() {
+                $('body').removeClass('loading')
+            })       
         }, 0)       
     })
 })()

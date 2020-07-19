@@ -3,15 +3,16 @@
         overflow-y: hidden;
         position: relative;
     }
-    .loading .loading-mask {
+    .loading-mask {
         position: fixed;
         bottom: 0;
         width: 100%;
         top: 0;
         z-index: 99999;
         background-color: #ffffff;
+        opacity: 1;
     }
-    .loading .loading-mask span {
+    .loading-mask span {
         display: block;
         position: absolute;
         margin: auto;
@@ -28,26 +29,26 @@
         box-sizing: content-box;
         padding: 12px;
     }
-    .loading .loading-mask span:nth-child(1) {
+    .loading-mask span:nth-child(1) {
         width: 36px;
         height: 36px;
         border-top: 2px solid orange;
         animation-delay: 0s;
     }
-    .loading .loading-mask span:nth-child(2) {
+    .loading-mask span:nth-child(2) {
         width: 60px;
         height: 60px;
         border-top: 2px solid purple;
         animation-delay: -1s;
         animation-direction: reverse;
     }
-    .loading .loading-mask span:nth-child(3) {
+    .loading-mask span:nth-child(3) {
         width: 84px;
         height: 84px;
         border-top: 2px solid red;
         animation-delay: 0s;
     }
-    .loading .loading-mask span:nth-child(4) {
+    .loading-mask span:nth-child(4) {
         width: 108px;
         height: 108px;
         border-top: 2px solid blue;
