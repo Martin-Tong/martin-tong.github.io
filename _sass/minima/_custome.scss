@@ -46,7 +46,11 @@ article.post {
     } 
   } 
   @include media-query($on-laptop) {
-    float: none;
+    ul li {
+      width: 100%;
+      float: none;
+    }
+    
   }
 }
 
