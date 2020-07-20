@@ -42,13 +42,13 @@ routes:
     path: /
   - blog:
     name: Blog
-    path: /blog
+    path: /blog.html
   - share:
     name: Share
-    path: /share
+    path: /share.html
   - others:
     name: Others
-    path: /others
+    path: /others.html
 
 # Exclude from processing.
 # The following items will not be processed, by default.
