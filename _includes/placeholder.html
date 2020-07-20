@@ -1,0 +1,55 @@
+<style>
+.ph-1 {
+    width: 100%;
+}
+.ph-1 .ph-2 {
+    height: 36px;
+    vertical-align: middle;
+    position: relative;
+    text-align: center;
+    line-height: 36px;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    font-size: xx-large;
+}
+.ph-1 .ph-2::after {
+    content: "|";
+    position: absolute;
+    animation: ph-flash 1s ease infinite;
+    top: 50%;
+    transform: translateY(-50%);
+}
+@keyframes ph-flash {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+</style>
+<section class="ph-1">
+    <p class="ph-2"> </p>
+</section>
+<script>
+    window.addEventListener('load', function() {
+        let text = '内容编辑中...',
+            textArray = text.split(''),
+            container = document.querySelector('.ph-2'),
+            start = performance.now(),
+            i = 0
+        function write(time) {
+            if ((time - start) >= 400 && i < textArray.length) {
+                container.firstChild.appendData(textArray[i])
+                i++
+                start = time
+            } 
+            if (i >= textArray.length) {
+                window.cancelAnimationFrame(write)
+                return
+            }
+            window.requestAnimationFrame(write)
+        }
+        window.requestAnimationFrame(write)
+    })
+</script>
