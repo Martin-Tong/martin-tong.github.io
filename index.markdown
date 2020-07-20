@@ -17,4 +17,4 @@ layout: entry
 
 如果有什么问题或者建议的话可以到[这里](https://github.com/Martin-Tong/martin-tong.github.io/issues)提issue。如果能够得到您的一个star我也将不胜感激。
 
-[Enjoy yourself! > > >](/blog)
+[Enjoy yourself! > > >](/blog.html)
