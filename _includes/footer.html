@@ -18,7 +18,7 @@
             {%- if site.email -%}
             <li>MailTo: <a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
             {%- endif -%}
-            <li><a href="{{ /about }}">About me</a></li>
+            <li><a href="{{ "/about" | relative_url }}">About me</a></li>
         </ul>
       </div>
       
@@ -29,6 +29,13 @@
       <div class="footer-col footer-col-3">
         <p>{{- site.description | escape -}}</p>
       </div>
+    </div>
+
+    <div class="footer-col-wrapper" style="text-align:center">
+      <p style="margin: 0;">为了节省CDN流量减少源站访问压力本博客使用的依赖全部为CDN资源，感谢
+        <a href='https://www.jsdelivr.com/' title="jsdelivr">♥ jsdelivr</a>
+      </p>
+      <b>Copyright © 2020</b> <span>豫ICP备19047041号</span>
     </div>
 
   </div>
