@@ -11,5 +11,3 @@ keywords: 混合应用 使用uni-app开发混合应用 hybird-app app开发 使�
 {% include placeholder.html %}
 
 <video controls="" autoplay="" name="media"><source src="https://freetyst.nf.migu.cn/public/product5th/product34/2019/07/1822/2009%E5%B9%B406%E6%9C%8826%E6%97%A5%E5%8D%9A%E5%B0%94%E6%99%AE%E6%96%AF/%E6%AD%8C%E6%9B%B2%E4%B8%8B%E8%BD%BD/MP3_40_16_Stero/60054701923.mp3?key=e2ab61811c6f0d67&amp;Tim=1595317686131&amp;channelid=00&amp;msisdn=3dab4d4dcf294231a988a61c55392118&amp;CI=600547019232600902000006889366&amp;F=000009" type="audio/mpeg"></video>
-
-<audio data-v-93a4d38a="" id="migu_audio" src="//freetyst.nf.migu.cn/public/product5th/product34/2019/07/1822/2009%E5%B9%B406%E6%9C%8826%E6%97%A5%E5%8D%9A%E5%B0%94%E6%99%AE%E6%96%AF/%E6%AD%8C%E6%9B%B2%E4%B8%8B%E8%BD%BD/MP3_40_16_Stero/60054701923.mp3?key=083bd6b3210f4031&amp;Tim=1595318450294&amp;channelid=00&amp;msisdn=278bbc0092f147ba80ed417c5312a7e8&amp;CI=600547019232600902000006889366&amp;F=000009"></audio>
