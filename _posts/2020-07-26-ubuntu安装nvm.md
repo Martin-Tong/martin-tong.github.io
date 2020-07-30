@@ -6,7 +6,7 @@ keywords: ubuntu安装nvm 使用nvm管理node版本 nvm的安装
 author: Martin Tong
 ---
 
-> 在使用 node的时候经常有需要用到不同版本 node的需求。为了方便管理或者切换安装的 node版本，使用 nvm是不错的选择。
+> 在使用 node的时候经常有需要用到不同版本 node的需求。为了方便管理或者切换安装的 node版本，使用 [nvm](https://github.com/nvm-sh/nvm)是不错的选择。
 > 本篇是 ubuntu上安装 nvm的记录。
 
 #### **安装**

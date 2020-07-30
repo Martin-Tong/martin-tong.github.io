@@ -4,3 +4,8 @@ _site
 .jekyll-metadata
 vendor/
 .bundle/
+node_modules
+.typescript
+tsconfig.json
+package.json
+package-lock.json
