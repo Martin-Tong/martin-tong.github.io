@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+  {% if page.style %}
+    {% assign styles = page.style | split: ', ' %}
+    {% for style in styles %}
+      <link rel="stylesheet" href="{{ style }}">
+    {% endfor %}
+  {% endif %}
+
+  <body>
+      <main class="aboutme">
+        {{ content }}
+      </main>
+      {% if page.depbody %}
+        {% assign bodydeps = page.depbody | split: ", " %}
+        {% for dependence in bodydeps %}
+            <script src="{{ dependence }}"></script>
+        {% endfor %}
+      {% endif %}
+  </body>
+
+</html>
