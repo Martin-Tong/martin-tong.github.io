@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh_CN"><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" hreflang="zh_CN" /><updated>2020-08-05T11:35:44+00:00</updated><id>/feed.xml</id><title type="html">Martin Tong’s Front end life</title><subtitle>一名半路出道的前端爱好者。热爱前端事业，关注前端技术，因为热爱所以把全部精力投入到前端相关的学习实践当中。 持续学习，温故知新，保持这份热情砥砺前行。</subtitle><entry><title type="html">Drafts</title><link href="/share/2020/07/27/drafts.html" rel="alternate" type="text/html" title="Drafts" /><published>2020-07-27T00:00:00+00:00</published><updated>2020-07-27T00:00:00+00:00</updated><id>/share/2020/07/27/drafts</id><content type="html" xml:base="/share/2020/07/27/drafts.html">&lt;style&gt;
+    #three-container {
+        width: 100%;
+        height: 360px
+    }
+&lt;/style&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;360px&quot; src=&quot;http://localhost:5000/auth/login&quot; seamless=&quot;&quot; name=&quot;login&quot; style=&quot;border:none&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot;&gt;&lt;/iframe&gt;
+&lt;div id=&quot;three-container&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+    window.onmessage = function(e){
+        $(&quot;[name='login']&quot;).fadeOut()
+        document.cookie = &quot;ex='ex' path='/'&quot;
+        document.cookie = e.data
+    }
+    window.addEventListener('load', function() {
+        
+    })
+&lt;/script&gt;</content><author><name>Martin Tong</name></author><category term="share" /><category term="tools" /><category term="swiper" /><summary type="html"></summary></entry><entry><title type="html">Ubuntu安装nvm</title><link href="/blog/2020/07/26/ubuntu%E5%AE%89%E8%A3%85nvm.html" rel="alternate" type="text/html" title="Ubuntu安装nvm" /><published>2020-07-26T00:00:00+00:00</published><updated>2020-07-26T00:00:00+00:00</updated><id>/blog/2020/07/26/ubuntu%E5%AE%89%E8%A3%85nvm</id><content type="html" xml:base="/blog/2020/07/26/ubuntu%E5%AE%89%E8%A3%85nvm.html">&lt;blockquote&gt;
+  &lt;p&gt;在使用 node的时候经常有需要用到不同版本 node的需求。为了方便管理或者切换安装的 node版本，使用 &lt;a href=&quot;https://github.com/nvm-sh/nvm&quot;&gt;nvm&lt;/a&gt;是不错的选择。
+本篇是 ubuntu上安装 nvm的记录。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;安装&quot;&gt;&lt;strong&gt;安装&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;安装nvm前需要卸载原有的node和之前全局安装的依赖：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#查看包是否安装及路径 ex:command -v node&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#查看原全局安装的依赖 npm ls -g ex: /usr/local/lib/node_modules&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get remove &lt;span class=&quot;nt&quot;&gt;--purge&lt;/span&gt; node 
+&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-r&lt;/span&gt; node_modules路径&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;安装nvm：&lt;/p&gt;
+
+&lt;p&gt;官方推荐的方式是使用官方提供的脚本自动安装：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#注意安装的目录为当前路径下的.nvm目录，即'~/.nvm'&lt;/span&gt;
+curl &lt;span class=&quot;nt&quot;&gt;-o-&lt;/span&gt; https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+wget &lt;span class=&quot;nt&quot;&gt;-qO-&lt;/span&gt; https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+&lt;span class=&quot;c&quot;&gt;#然后添加下面脚本到~/.bash_profile, ~/.zshrc, ~/.profile, 或者 ~/.bashrc&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;NVM_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-z&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XDG_CONFIG_HOME&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; %s &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.nvm&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;printf&lt;/span&gt; %s &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;XDG_CONFIG_HOME&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/nvm&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NVM_DIR&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/nvm.sh&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NVM_DIR&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/nvm.sh&quot;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# This loads nvm&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;但是不知道为什么，这个域名目前打不开，至少写本篇的时候打不开。所以，选择使用源码手动安装的方式：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#可以自定义安装目录 ex：$HOME/path/to path/.nvm&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;NVM_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.nvm&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+  git clone https://github.com/nvm-sh/nvm.git &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NVM_DIR&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NVM_DIR&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+  git checkout &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;git describe &lt;span class=&quot;nt&quot;&gt;--abbrev&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0 &lt;span class=&quot;nt&quot;&gt;--tags&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--match&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;v[0-9]*&quot;&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;git rev-list &lt;span class=&quot;nt&quot;&gt;--tags&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--max-count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NVM_DIR&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/nvm.sh&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;#然后添加下面脚本到~/.bashrc, ~/.profile, or ~/.zshrc使得每次登录系统时都能自动安装&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;NVM_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.nvm&quot;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NVM_DIR&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/nvm.sh&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$NVM_DIR&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/nvm.sh&quot;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# This loads nvm&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;到这里nvm安装完成，然后就可以通过nvm安装或者切换node版本。&lt;/p&gt;
+
+&lt;h4 id=&quot;问题&quot;&gt;&lt;strong&gt;问题&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;在使用nvm安装node的时候遇到的问题：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#安装&lt;/span&gt;
+nvm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;10.16.3
+
+&lt;span class=&quot;c&quot;&gt;#出现的错误&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$&amp;gt;&lt;/span&gt;./configure &lt;span class=&quot;nt&quot;&gt;--prefix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/home/martin/.nvm/versions/node/v10.16.3 &amp;lt;
+./configure: 4: &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt;: python: not found
+nvm: &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;v10.16.3 failed!&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;我本地安装的是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;python3&lt;/code&gt;，但是错误提示&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exec: python: not found&lt;/code&gt;。我的解决办法：&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ln -fs /usr/bin/python3 /usr/bin/python&lt;/code&gt;，如果出现权限限制加上&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sudo&lt;/code&gt;。&lt;/p&gt;</content><author><name>Martin Tong</name></author><category term="blog" /><category term="ubuntu" /><category term="nvm" /><summary type="html">在使用 node的时候经常有需要用到不同版本 node的需求。为了方便管理或者切换安装的 node版本，使用 nvm是不错的选择。 本篇是 ubuntu上安装 nvm的记录。</summary></entry><entry><title type="html">使用swiper</title><link href="/blog/2020/07/23/%E4%BD%BF%E7%94%A8swiper.html" rel="alternate" type="text/html" title="使用swiper" /><published>2020-07-23T00:00:00+00:00</published><updated>2020-07-23T00:00:00+00:00</updated><id>/blog/2020/07/23/%E4%BD%BF%E7%94%A8swiper</id><content type="html" xml:base="/blog/2020/07/23/%E4%BD%BF%E7%94%A8swiper.html">&lt;style&gt;
+    .swiper-container {
+        width: 100%;
+        height: 360px
+    }
+    @media screen and (max-width: 600px) {
+        .swiper-container {
+            width: 100%;
+            height: 180px
+        }
+    }
+    table tbody tr {
+        background-color: white !important;
+    }
+    .swiper-container {
+        --swiper-pagination-color: #000000;
+        --swiper-theme-color: #000000
+    }
+&lt;/style&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;在页面展示的时候，经常有轮播展示的需求。与自己实现的方式相比，使用成熟、优秀的库可以提高开发体验和实际的展示效果。本篇，介绍的就是这样一个依赖库：&lt;a href=&quot;https://github.com/nolimits4web/swiper&quot;&gt;swiper&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;使用&quot;&gt;&lt;strong&gt;使用&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;初始化一个Swiper实例，当页面中有多个实例时可以为每个容器设置不同的clss或id以区分它们。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;参数名&lt;/th&gt;
+      &lt;th&gt;类型&lt;/th&gt;
+      &lt;th&gt;必填&lt;/th&gt;
+      &lt;th&gt;描述&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;swiperContainer&lt;/td&gt;
+      &lt;td&gt;HTMLElement or string&lt;/td&gt;
+      &lt;td&gt;必填&lt;/td&gt;
+      &lt;td&gt;Swiper容器的css选择器或者容器的引用&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;parameters&lt;/td&gt;
+      &lt;td&gt;object&lt;/td&gt;
+      &lt;td&gt;可选&lt;/td&gt;
+      &lt;td&gt;Swiper的个性化配置&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Swiper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;.swiper-container&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//options&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;实例化一个Swiper对象后，该对象会被附加到对用的swiper容器下，可以通过&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;swiperContainer.swiper&lt;/code&gt;获取引用。&lt;/p&gt;
+
+&lt;h4 id=&quot;选项&quot;&gt;&lt;strong&gt;选项&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;定制Swiper的主要方式是通过实例化时传入options，包括其提供的一些附加功能（组件）也是以选项的形式实现的。Swiper提供的选项很多，具体可以查看&lt;a href=&quot;https://www.swiper.com.cn/api/index.html&quot;&gt;swiper中文api文档&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h4 id=&quot;示例&quot;&gt;&lt;strong&gt;示例&lt;/strong&gt;&lt;/h4&gt;
+&lt;style&gt;
+    .swiper-slide-item {
+        background-color: wheat;
+        text-align: center
+    }
+    #ex-1 .swiper-slide-item {
+        padding-top: 10%;
+        background-color: transparent;
+    }
+    .swiper-slide-item p {
+        display: inline-block;
+        font-size: 2em;
+        letter-spacing: 0.1em;
+        font-weight: bolder;
+        margin: 0
+    }
+    .swiper-pagination-bullet {
+        transition: all 0.3s linear;
+    }
+    .swiper-pagination-bullet-active {
+        width: 16px;
+        border-radius: 10px;
+    }
+&lt;/style&gt;
+
+&lt;div class=&quot;swiper-container&quot; id=&quot;ex-1&quot;&gt;
+    &lt;div style=&quot;background-image: url('/assets/swiper/midouzi.jpg');background-size: cover;background-position:left;position:absolute;top:0;left:0;width:130%;height:100%;filter:blur(5px)&quot; data-swiper-parallax=&quot;-15%&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;swiper-wrapper&quot;&gt;
+        &lt;div class=&quot;swiper-slide swiper-slide-item&quot;&gt;
+            &lt;p data-swiper-parallax=&quot;-1000&quot; data-swiper-parallax-scale=&quot;0.2&quot; data-swiper-parallax-duration=&quot;1000&quot;&gt;title&lt;/p&gt;&lt;br /&gt;
+            &lt;p data-swiper-parallax=&quot;-1000&quot; data-swiper-parallax-scale=&quot;0.2&quot; data-swiper-parallax-duration=&quot;1200&quot;&gt;content&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;swiper-slide swiper-slide-item&quot;&gt;
+            &lt;p data-swiper-parallax=&quot;-1000&quot; data-swiper-parallax-opacity=&quot;0&quot; data-swiper-parallax-duration=&quot;1000&quot;&gt;slide 2&lt;/p&gt;&lt;br /&gt;
+            &lt;p data-swiper-parallax=&quot;-1000&quot; data-swiper-parallax-opacity=&quot;0&quot; data-swiper-parallax-duration=&quot;1200&quot;&gt;content&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;swiper-slide swiper-slide-item&quot;&gt;
+            &lt;p data-swiper-parallax=&quot;-1000&quot; data-swiper-parallax-duration=&quot;1000&quot;&gt;slide 3&lt;/p&gt;&lt;br /&gt;
+            &lt;p data-swiper-parallax=&quot;-1000&quot; data-swiper-parallax-duration=&quot;1200&quot;&gt;content&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;swiper-button-next&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;swiper-button-prev&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;swiper-pagination&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div style=&quot;margin:10px 0;overflow: auto&quot;&gt;&lt;/div&gt;
+
+&lt;style&gt;
+    #ex-2 div.swiper-pagination.swiper-pagination-progressbar {
+        bottom: 0;
+        top: auto
+    }
+    .my-swiper-animation {
+        visibility: hidden;
+        animation-fill-mode: backwards;
+        animation-iteration-count: 1;
+    }
+&lt;/style&gt;
+
+&lt;div class=&quot;swiper-container&quot; id=&quot;ex-2&quot;&gt;
+    &lt;div class=&quot;swiper-wrapper&quot;&gt;
+        &lt;div class=&quot;swiper-slide swiper-slide-item&quot;&gt;
+            &lt;div class=&quot;swiper-slide-content my-swiper-animation&quot;&gt;
+                &lt;p&gt;slide 1&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;swiper-slide swiper-slide-item&quot;&gt;
+            &lt;div class=&quot;swiper-slide-content my-swiper-animation&quot;&gt;
+                &lt;p&gt;slide 2&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;swiper-slide swiper-slide-item&quot;&gt;
+            &lt;div class=&quot;swiper-slide-content my-swiper-animation&quot;&gt;
+                &lt;p&gt;slide 3&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;swiper-slide swiper-slide-item&quot;&gt;
+            &lt;div class=&quot;swiper-slide-content my-swiper-animation&quot;&gt;
+                &lt;p&gt;slide 4&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;swiper-slide swiper-slide-item&quot;&gt;
+            &lt;div class=&quot;swiper-slide-content my-swiper-animation&quot;&gt;
+                &lt;p&gt;slide 5&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;custom-pagination left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;custom-pagination right&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;swiper-pagination&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</content><author><name>Martin Tong</name></author><category term="blog" /><category term="tools" /><category term="swiper" /><summary type="html"></summary></entry><entry><title type="html">有趣的页面元素加载动画</title><link href="/blog/2020/07/21/%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%85%83%E7%B4%A0%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB.html" rel="alternate" type="text/html" title="有趣的页面元素加载动画" /><published>2020-07-21T00:00:00+00:00</published><updated>2020-07-21T00:00:00+00:00</updated><id>/blog/2020/07/21/%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%85%83%E7%B4%A0%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB</id><content type="html" xml:base="/blog/2020/07/21/%E6%9C%89%E8%B6%A3%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%85%83%E7%B4%A0%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB.html">&lt;style&gt;
+    #wow-wraper {
+        display: flex;
+        justify-content: flex-start;
+        align-content: stretch;
+        flex-wrap: wrap;
+        position: relative;
+        overflow: hidden;
+    }
+    .wow {
+        width: 40%;
+        height: 48px;
+        margin: 5%;
+        line-height: 48px;
+        color: aliceblue;
+        text-align: center;
+    }
+    .wow:nth-child(n) {
+        background-color: red
+    }
+    .wow:nth-child(2n) {
+        background-color: black
+    }
+&lt;/style&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;在进行网页开发或者在浏览别的网页时，丰富的有创意的页面动画很容易引起浏览者的注意。由于js、css动画的相关技术已经非常成熟，在很长时间的积累下涌现了一批批样式库或者动画库。本篇，介绍的就是一个很有意思的动画库 - &lt;a href=&quot;https://github.com/matthieua/WOW&quot;&gt;WOW.js&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;安装&quot;&gt;&lt;strong&gt;安装&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;安装wow很简单，最简单的只需引入wow.js和animate.css就可以了。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'stylesheet'&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/link/to/animate.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;script &lt;/span&gt;&lt;span class=&quot;na&quot;&gt;src=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/link/to/wow.js&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;如果使用包管理工具的话，可以&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm install wowjs&lt;/code&gt;之后按需引用即可。&lt;/p&gt;
+
+&lt;h4 id=&quot;使用&quot;&gt;&lt;strong&gt;使用&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;为需要实现进入动画的元素添加class &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wow&lt;/code&gt;和想要的animate类：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- wow类可以在初始化WOW的时候自定义以防止类名冲突 --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wow bounceInUp&amp;gt;此元素将会有bounceInUp进入动画&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;初始化WOW：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;WOW&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;定制wow的效果：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;定制指定元素的过渡效果：
+&lt;strong&gt;data-wow-duration&lt;/strong&gt;: 定制元素过渡的周期；
+&lt;strong&gt;data-wow-delay&lt;/strong&gt;: 定制元素过渡前的延迟；
+&lt;strong&gt;data-wow-offset&lt;/strong&gt;: 定制元素距离视窗底部距离为多少时开始进行过渡动画；
+&lt;strong&gt;data-wow-iteration&lt;/strong&gt;: 定制元素过渡效果的重复次数。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;全局定制wow的行为：
+&lt;strong&gt;boxClass&lt;/strong&gt;: 为需要实现过渡的元素添加的类名，默认为’wow’；
+&lt;strong&gt;animateClass&lt;/strong&gt;: 触发过渡的类名，默认为’animated’使用animate.css；
+&lt;strong&gt;offset&lt;/strong&gt;: 定义元素距离视窗底部距离为多少时开始进行过渡动画；
+&lt;strong&gt;mobile&lt;/strong&gt;: 是否需要在手机上实现过渡动画；
+&lt;strong&gt;live&lt;/strong&gt;: 是否持续监听页面上新添加的带有’wow’类的元素（比如滚动加载）。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;效果&quot;&gt;&lt;strong&gt;效果&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;div id=&quot;wow-wraper&quot;&gt;
+&lt;div class=&quot;wow bounceInUp&quot;&gt;bounceInUp&lt;/div&gt;
+&lt;div class=&quot;wow tada&quot;&gt;tada&lt;/div&gt;
+&lt;div class=&quot;wow wobble&quot;&gt;wobble&lt;/div&gt;
+&lt;div class=&quot;wow flash&quot;&gt;flash&lt;/div&gt;
+&lt;div class=&quot;wow bounceOut&quot;&gt;bounceOut&lt;/div&gt;
+&lt;div class=&quot;wow rotateInUpLeft&quot;&gt;rotateInUpLeft&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+window.addEventListener('load', function() {
+    window.owo = new WOW({live: true})
+    owo.init()
+    console.log(owo)
+})
+&lt;/script&gt;</content><author><name>Martin Tong</name></author><category term="blog" /><category term="tools" /><category term="wow.js" /><category term="animate.css" /><summary type="html"></summary></entry><entry><title type="html">Githun pages cdn加速</title><link href="/blog/2020/07/20/githun-pages-CDN%E5%8A%A0%E9%80%9F.html" rel="alternate" type="text/html" title="Githun pages cdn加速" /><published>2020-07-20T00:00:00+00:00</published><updated>2020-07-20T00:00:00+00:00</updated><id>/blog/2020/07/20/githun%20pages%20CDN%E5%8A%A0%E9%80%9F</id><content type="html" xml:base="/blog/2020/07/20/githun-pages-CDN%E5%8A%A0%E9%80%9F.html">&lt;h5 id=&quot;在如何使用gihubpages-托管自己的blog我们实现了利用jekyll编写博客并通过travis自动构建部署到githubpages上但是现在有个问题我们的blog现在是托管在github的服务器上由于是海外服务器所以不论是在访问速度还是国内的收索引擎抓取上都或多或少的有一些影响所以本篇的内容是如果通过cdn解决这些影响&quot;&gt;在&lt;a href=&quot;/blog/2020/07/12/%E4%BD%BF%E7%94%A8jekyll+githubpages+travis.html&quot;&gt;如何使用gihubpages 托管自己的blog&lt;/a&gt;我们实现了利用jekyll编写博客并通过travis自动构建部署到githubpages上。但是现在有个问题，我们的blog现在是托管在github的服务器上，由于是海外服务器，所以不论是在访问速度还是国内的收索引擎抓取上都或多或少的有一些影响。所以本篇的内容是如果通过CDN解决这些影响。&lt;/h5&gt;
+
+&lt;p&gt;首先了解什么是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CDN&lt;/code&gt;。CDN(Content Delivery Network)即内容分发网络，是构建在现有网络基础之上的智能虚拟网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。CDN的关键技术主要有内容存储和分发技术。（选自百度百科=.=）&lt;/p&gt;
+
+&lt;p&gt;我们的主要目的就是通过CDN加快我们访问自己blog的速度。实现的步骤如下：&lt;/p&gt;
+
+&lt;h4 id=&quot;为自己的域名开通cdn加速服务&quot;&gt;&lt;strong&gt;为自己的域名开通CDN加速服务&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;提供CDN加速服务的平台有很多，我这里使用的腾讯云，各家也都应该有详细的使用指南。&lt;/p&gt;
+
+&lt;p&gt;首先在&lt;strong&gt;腾讯云控制台 -&amp;gt; 内容分发网络 -&amp;gt; 域名管理&lt;/strong&gt;处添加域名：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/cdn/cdn-setting.jpg&quot; alt=&quot;CDN setting&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;域名：&lt;/strong&gt;自己需要加速的地址，即&lt;a href=&quot;/blog/2020/07/12/%E4%BD%BF%E7%94%A8jekyll+githubpages+travis.html&quot;&gt;如何使用gihubpages 托管自己的blog&lt;/a&gt;中的custom domain；&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;源站地址：&lt;/strong&gt;github pages服务器所在的地址。可以通过&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dig example.30erli.cn +nostats +nocomments +nocmd&lt;/code&gt;确认。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;回源协议：&lt;/strong&gt;由于GitHub pages默认情况下强制使用https，如果你使用&lt;strong&gt;https&lt;/strong&gt;的话可以选择HTTPS选项。一般&lt;strong&gt;协议跟随&lt;/strong&gt;可以满足所有情况。&lt;/p&gt;
+
+&lt;h4 id=&quot;使用https&quot;&gt;&lt;strong&gt;使用HTTPS&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;默认情况下GitHub pages使用的是https协议，为了通过我们的自定义域名以https的方式访问我们的blog，我们需要为自定义域名申请https证书（这里是’example.30erli.cn’）。如果没有配置证书直接通过&lt;strong&gt;https://example.30erli.cn&lt;/strong&gt;访问的话浏览器会弹出安全警告并阻止访问。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/cdn/https-error.jpg&quot; alt=&quot;https error&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;配置的方式很简单，可以到自己的域名服务商下申请一个免费的证书，然后在&lt;strong&gt;腾讯云控制台 -&amp;gt; 内容分发网络 -&amp;gt; 证书管理&lt;/strong&gt;下配置。&lt;/p&gt;
+
+&lt;h4 id=&quot;添加域名解析&quot;&gt;&lt;strong&gt;添加域名解析&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;按照前面配置好CDN，接下来需要将我们的域名解析到正确的位置。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/cdn/dns.jpg&quot; alt=&quot;dns&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这里国内的访问我们CNAME到CDN服务分配给我们的地址，国外的访问依旧CNAME到默认的地址。&lt;/p&gt;
+
+&lt;p&gt;以上就是为GitHub pages开启CDN加速的全部步骤啦！&lt;/p&gt;</content><author><name>Martin Tong</name></author><category term="blog" /><category term="tools" /><category term="cdn" /><category term="seo" /><summary type="html">在如何使用gihubpages 托管自己的blog我们实现了利用jekyll编写博客并通过travis自动构建部署到githubpages上。但是现在有个问题，我们的blog现在是托管在github的服务器上，由于是海外服务器，所以不论是在访问速度还是国内的收索引擎抓取上都或多或少的有一些影响。所以本篇的内容是如果通过CDN解决这些影响。</summary></entry><entry><title type="html">我的第一个app uniapp</title><link href="/blog/2020/07/20/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAAPP-UniApp.html" rel="alternate" type="text/html" title="我的第一个app uniapp" /><published>2020-07-20T00:00:00+00:00</published><updated>2020-07-20T00:00:00+00:00</updated><id>/blog/2020/07/20/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAAPP%20UniApp</id><content type="html" xml:base="/blog/2020/07/20/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AAAPP-UniApp.html">&lt;blockquote&gt;
+  &lt;p&gt;随着前端技术的发展，前端开发者所能做的事已经越来越多。显著的，由于手机用户不断增加、手机性能的不断提升以及各个大厂强推自己家的小程序，在这种场景下对前端开发者的要求已经不仅仅是基于浏览器环境进行网页开发了。为了满足这种多端开发的需求，一个高效的开发工具尤为重要。本篇，介绍如何使用 HBuilder + uniAPP进行多端开发。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;style&gt;
+.ph-1 {
+    width: 100%;
+}
+.ph-1 .ph-2 {
+    height: 36px;
+    vertical-align: middle;
+    position: relative;
+    text-align: center;
+    line-height: 36px;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    font-size: xx-large;
+}
+.ph-1 .ph-2::after {
+    content: &quot;|&quot;;
+    position: absolute;
+    animation: ph-flash 1s ease infinite;
+    top: 50%;
+    transform: translateY(-50%);
+}
+@keyframes ph-flash {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+&lt;/style&gt;
+
+&lt;section class=&quot;ph-1&quot;&gt;
+    &lt;p class=&quot;ph-2&quot;&gt; &lt;/p&gt;
+&lt;/section&gt;
+&lt;script&gt;
+    window.addEventListener('load', function() {
+        let text = '内容编辑中...',
+            textArray = text.split(''),
+            container = document.querySelector('.ph-2'),
+            start = performance.now(),
+            i = 0
+        function write(time) {
+            if ((time - start) &gt;= 400 &amp;&amp; i &lt; textArray.length) {
+                container.firstChild.appendData(textArray[i])
+                i++
+                start = time
+            } 
+            if (i &gt;= textArray.length) {
+                window.cancelAnimationFrame(write)
+                return
+            }
+            window.requestAnimationFrame(write)
+        }
+        window.requestAnimationFrame(write)
+    })
+&lt;/script&gt;
+
+&lt;video controls=&quot;&quot; autoplay=&quot;&quot; name=&quot;media&quot;&gt;&lt;source src=&quot;https://freetyst.nf.migu.cn/public/product5th/product34/2019/07/1822/2009%E5%B9%B406%E6%9C%8826%E6%97%A5%E5%8D%9A%E5%B0%94%E6%99%AE%E6%96%AF/%E6%AD%8C%E6%9B%B2%E4%B8%8B%E8%BD%BD/MP3_40_16_Stero/60054701923.mp3?key=e2ab61811c6f0d67&amp;amp;Tim=1595317686131&amp;amp;channelid=00&amp;amp;msisdn=3dab4d4dcf294231a988a61c55392118&amp;amp;CI=600547019232600902000006889366&amp;amp;F=000009&quot; type=&quot;audio/mpeg&quot; /&gt;&lt;/video&gt;</content><author><name>Martin Tong</name></author><category term="blog" /><category term="tools" /><category term="HBuilder" /><category term="uni-app" /><summary type="html">随着前端技术的发展，前端开发者所能做的事已经越来越多。显著的，由于手机用户不断增加、手机性能的不断提升以及各个大厂强推自己家的小程序，在这种场景下对前端开发者的要求已经不仅仅是基于浏览器环境进行网页开发了。为了满足这种多端开发的需求，一个高效的开发工具尤为重要。本篇，介绍如何使用 HBuilder + uniAPP进行多端开发。</summary></entry><entry><title type="html">让数据可视化</title><link href="/blog/2020/07/15/%E8%AE%A9%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96.html" rel="alternate" type="text/html" title="让数据可视化" /><published>2020-07-15T00:00:00+00:00</published><updated>2020-07-15T00:00:00+00:00</updated><id>/blog/2020/07/15/%E8%AE%A9%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96</id><content type="html" xml:base="/blog/2020/07/15/%E8%AE%A9%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96.html">&lt;blockquote&gt;
+  &lt;p&gt;作为前端开发的一个主要需求，数据可视化在很多场景下都有着极大价值。而为了实现这种需求，一个接口丰富，平台兼容，性能优秀
+且易于上手的可视化开发库可以帮助我们快速完成开发。这里我们使用的是&lt;a href=&quot;https://echarts.apache.org&quot;&gt;ECharts&lt;/a&gt;,一个使用 JavaScript 实现的开源 &amp;gt; 可视化库。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;安装&quot;&gt;安装&lt;/h3&gt;
+
+&lt;p&gt;引入ECharts可以直接下载官方的源码自行编译打包，也可以通过包管理工具npm安装或者直接引用CDN资源。各个方式的具体步骤可以查看&lt;a href=&quot;https://echarts.apache.org/zh/tutorial.html#5%20%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%20ECharts&quot;&gt;官方文档&lt;/a&gt;。我们还是关注怎么使用它吧！&lt;/p&gt;
+
+&lt;pre class=&quot;static&quot;&gt;&lt;code class=&quot;lang-css&quot;&gt;body {color: red}&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;使用&quot;&gt;使用&lt;/h3&gt;
+
+&lt;h5 id=&quot;简单示例查看源配置&quot;&gt;&lt;strong&gt;简单示例&lt;/strong&gt;&lt;a class=&quot;source-code&quot;&gt;查看源配置&lt;/a&gt;&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-javascript&quot; data-related=&quot;#echarts-ex-1&quot;&gt;
+{title: {
+    text: &quot;ECharts简单示例&quot;
+},
+grid: {
+    height: &quot;auto&quot;,
+    width: &quot;100%&quot;,
+    left: &quot;center&quot;
+},
+xAxis: {
+    type: &quot;category&quot;,
+    axisLabel: {
+        align: &quot;center&quot;
+    }
+},
+yAxis: {},
+series: [
+    {
+        name: &quot;测试bar&quot;,
+        type: &quot;bar&quot;,
+        encode: {
+            x: [0],
+            y: [1],
+            tooltip: [1]
+        }
+    },
+    {
+        name: &quot;测试line&quot;,
+        type: &quot;line&quot;,
+        encode: {
+            y: [2],
+            tooltip: [2]
+        }
+    }
+],
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&quot;echarts-ex-1&quot; class=&quot;echarts-ex&quot;&gt;&lt;/div&gt;
+
+&lt;p&gt;这个简单的示例其实已经能够满足大多数需求，做前端可视化时往往太复杂的图示反而不利于信息的展示。但是，如果我们需要做一些复杂的图表或者展示复杂的数据结构时，ECharts提供了多种类型的图表以及自定义的能力。&lt;/p&gt;
+
+&lt;h5 id=&quot;日历图查看源配置&quot;&gt;&lt;strong&gt;日历图&lt;/strong&gt;&lt;a class=&quot;source-code&quot;&gt;查看源配置&lt;/a&gt;&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&quot;lang-js&quot; data-related=&quot;#echarts-ex-2&quot;&gt;
+{title: {
+    text: '日历图例'
+},
+calendar: {
+    range: '2020',
+    width: '100%',
+    left: 'left',
+    cellSize: 15,
+    top: 'center',
+    yearLabel: false
+},
+visualMap: {
+    type: 'continuous',
+    show: true,
+    min: 0,
+    max: 10000,
+    left: 'right',
+    top: 'top',
+    orient: 'horizontal'
+},
+series: {
+    type: 'heatmap',
+    coordinateSystem: 'calendar'
+},
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&quot;echarts-ex-2&quot; class=&quot;echarts-ex&quot;&gt;&lt;/div&gt;
+
+&lt;p&gt;ECharts通过配置项来定制化图表，在其配置项里包含的一些组件足以满足大多数需求。比如，绘制坐标系的组件：grid（直角坐标系）、polar（极坐标系）、radar（雷达坐标系）、geo（地理坐标系）等；绘制坐标轴的组件：xAxis（x轴）、yAxis（y轴），radiusAxis（极坐标系的径向轴）、angleAxis（极坐标系的角度轴）、singleAxis（单轴）等。还有一些特殊的组件：tooltip（提示框组件）、title（标题组件）、legend（图例组件）、visualMap（视觉映射组件）、dataZoom（区域缩放组件）等。
+通过这些组件的组合，选择适合展现自己想要可视化的数据结构的组件，我么就可以在前端实现数据可视化啦！&lt;/p&gt;</content><author><name>Martin Tong</name></author><category term="blog" /><category term="tools" /><category term="echarts" /><summary type="html">作为前端开发的一个主要需求，数据可视化在很多场景下都有着极大价值。而为了实现这种需求，一个接口丰富，平台兼容，性能优秀 且易于上手的可视化开发库可以帮助我们快速完成开发。这里我们使用的是ECharts,一个使用 JavaScript 实现的开源 &amp;gt; 可视化库。</summary></entry><entry><title type="html">使用jekyll+githubpages+travis</title><link href="/blog/2020/07/12/%E4%BD%BF%E7%94%A8jekyll+githubpages+travis.html" rel="alternate" type="text/html" title="使用jekyll+githubpages+travis" /><published>2020-07-12T00:00:00+00:00</published><updated>2020-07-12T00:00:00+00:00</updated><id>/blog/2020/07/12/%E4%BD%BF%E7%94%A8jekyll+githubpages+travis</id><content type="html" xml:base="/blog/2020/07/12/%E4%BD%BF%E7%94%A8jekyll+githubpages+travis.html">&lt;blockquote&gt;
+  &lt;p&gt;项目用到的工具：&lt;/p&gt;
+
+  &lt;p&gt;travis：&lt;a href=&quot;https://travis-ci.org/&quot;&gt;自动构建发布工具&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;github pages：&lt;a href=&quot;https://pages.github.com/&quot;&gt;免费的静态网站托管平台&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;jekyll：&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;基于ruby的静态网页生成工具&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&quot;前言&quot;&gt;前言：&lt;/h5&gt;
+&lt;h5 id=&quot;之前就接触过jekyll但是由于没有接触过ruby同时使用这个工具需要学习些dsl所以没有继续学习使用下去最近在回顾nuxt看到buxt也有生成静态页面的功能和jekyll比较了一下觉得jekyll用来做静态网站的开发工具体验会更好一点可能是更有折腾的感觉吧所以就有了这个基于jekyll开发个人部落格&quot;&gt;之前就接触过jekyll，但是由于没有接触过ruby，同时使用这个工具需要学习些DSL，所以没有继续学习使用下去。最近在回顾NUXT，看到BUXT也有生成静态页面的功能，和jekyll比较了一下觉得jekyll用来做静态网站的开发工具体验会更好一点（可能是更有折腾的感觉吧）。所以就有了这个基于jekyll开发个人部落格。&lt;/h5&gt;
+
+&lt;h2 id=&quot;工具安装&quot;&gt;工具安装&lt;/h2&gt;
+
+&lt;p&gt;在使用任何一个工具之前，其文档必然会有详细的安装配置指南，这里我只写出基本的步骤和常用的指令，因为有些东西我也没有用到过。所以想完整的学习还是得靠官方的文档。&lt;/p&gt;
+
+&lt;h3 id=&quot;jekyll&quot;&gt;jekyll：&lt;/h3&gt;
+&lt;p&gt;既然是基于ruby的工具，首先要安装必要的环境依赖。以ubuntu下安装为例（更多平台安装&lt;a href=&quot;https://jekyllrb.com/docs/installation/&quot;&gt;参照官方文档&lt;/a&gt;）：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ubuntu&quot; data-lang=&quot;ubuntu&quot;&gt;sudo apt-get install ruby-full build-essential zlib1g-dev 
+#注意涉及到权限问题最好把Ruby Gems不要安装在root用户下。
+#可以把gems理解成npm或者pip，在不通过的用户或者项目下安装方便依赖管理
+#配置用户gems安装目录
+echo '# Install Ruby Gems to ~/gems' &amp;gt;&amp;gt; ~/.bashrc
+echo 'export GEM_HOME=&quot;$HOME/gems&quot;' &amp;gt;&amp;gt; ~/.bashrc
+echo 'export PATH=&quot;$HOME/gems/bin:$PATH&quot;' &amp;gt;&amp;gt; ~/.bashrc
+source ~/.bashrc
+#最后安装jekyll
+gem install jekyll bundler&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;推荐使用bundler，在我的理解里，bundler应该作用类似于 npm 的&lt;strong&gt;package-lock.json&lt;/strong&gt;和 pip 下的&lt;strong&gt;pip freeze &amp;gt;requirement.txt&lt;/strong&gt;用于管理当前项目下各依赖项目的版本。使用bundler也方便后面我们使用travis等自动构建发布工具。&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#国内用户解决gems源下载慢的问题可以如下方式解决&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sources&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#清除当前的源&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sources&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:/&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;gems&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ruby&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;china&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;com&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#添加国内镜像源&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pjfloder&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pjfloder&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#生成Gemfile，如果需要使用国内镜像源需要修改文件里的source为“https://gems.ruby-china.com”&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'vendor/bundle'&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#配置bundle下载gems包放置的目录，推荐使用这个目录可以省去不少的步骤。我修改过，走了不少弯路又改回来了，都是泪。&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jekyll&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#安装jekyll&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jekyll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;force&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#在当前目录初始化jekyll项目,由于当前目录下已经有内容了所以使用--force，注意后面那个'.'。&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#因为jekyll初始化后默认有一些依赖项而上面我们使用了--skip-bundle，如默认的模板minima等。所以需要执行一下install不然后缺少依赖报错。&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;然后就可以愉快的进行&lt;strong&gt;bundle exec jekyll build&lt;/strong&gt;或者&lt;strong&gt;bundle exec jekyll serve&lt;/strong&gt;等步骤了。注意&lt;strong&gt;bundle exec&lt;/strong&gt;如果使用了bundler的话要记住加这个前缀保证每次运行时的依赖项版本一致。&lt;/p&gt;
+
+&lt;h3 id=&quot;gh-pages&quot;&gt;gh pages：&lt;/h3&gt;
+&lt;p&gt;gh pages是以git repo的形式存在的，所以使用gh pages首先需要申请一个repo。注意，如果是个人页面即仓库格式为&lt;strong&gt;https://github.com/username/username.github.io&lt;/strong&gt;则需要设置仓库类型为public且要发布的页面必须放在master分支下。
+创建仓库很简单，默认情况下仓库对应的gh pages网址为&lt;strong&gt;https://username.github.io&lt;/strong&gt;。如果需要设置自定义域名就需要在仓库里设置：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/jekyll/custom-domain.JPG&quot; alt=&quot;custome domain&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;这一步会在仓库根目录下生成一个名为&lt;strong&gt;CNAME&lt;/strong&gt;的文件，无论什么时候push了都要保证这个文件一直存在于根目录下。最后就需要到自己的DNS解析服务商下做CNAME自己的域名到gh pages默认域名下了。&lt;/p&gt;
+
+&lt;h3 id=&quot;travis&quot;&gt;travis：&lt;/h3&gt;
+&lt;p&gt;travis是一个开源的自动构建及发布平台，使用travis不需要下载安装任何东西，所有的操作都可以通过&lt;a href=&quot;https://travis-ci.org/&quot;&gt;网页&lt;/a&gt;操作。我们唯一需要做的就是保证提交到远程仓库的文件中有一个&lt;strong&gt;.travis.yml&lt;/strong&gt;文件以定制travis的构建行为。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#gh-pages&quot;&gt;如前所述&lt;/a&gt;，当发布个人页面时需要将要展示的文件放在master分支下。那么如果需要travis编译的话(&lt;strong&gt;exec bundle jekyll build&lt;/strong&gt;)我们的源文件应该放在哪呢？这个时候我们可以把源文件放在一些特殊分支下如gh-pages，这个分支只在需要发布项目页面的时候有用。&lt;/p&gt;
+
+&lt;p&gt;travis可以使用github账号登录，登陆后可以看到我们托管的所有public的项目，当然如果需要对private项目进行操作也可以通过设置解决。&lt;/p&gt;
+
+&lt;p&gt;我们的目的是让travis监听我们每次的push，然后构建我们的静态页面并发布到master分支下。要完成这个步骤travis也需要一些操作我们托管的仓库的权限：&lt;/p&gt;
+
+&lt;p&gt;GitHub setting » Developer settings » Personal access tokens
+&lt;img src=&quot;/assets/jekyll/pat.JPG&quot; alt=&quot;申请PAT&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;生成PAT选项中NOTE可以随便填写。一般情况下我们只需要repo » public_repo权限，如果有特殊需要的话也可以酌情勾选。最后一定要保存下生成key，因为刷新页面后这个key就再也不可见了。&lt;/p&gt;
+
+&lt;p&gt;然后选中我们的github pages仓库，并点击右侧的setting：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/jekyll/travis-setting.jpg&quot; alt=&quot;travis setting&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;通过如下方式添加travis虚拟机下的环境变量。NAME随便填写建议用易分辨的名字，除了NAME和VALUE外别的可不设置：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/jekyll/use-pat.jpg&quot; alt=&quot;use pat&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;最后修改一下&lt;strong&gt;.travis.yml&lt;/strong&gt;文件如下形式：&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yml&quot; data-lang=&quot;yml&quot;&gt;&lt;span class=&quot;na&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;linux&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;language&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ruby&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;rvm&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;2.5.1&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;cache&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bundler&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#缓存目录，可加快下次编译&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;only&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;gh-pages&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#只监听gh-pages分支上的push事件&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bundle exec jekyll huild&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;global&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;NOKOGIRI_USE_SYSTEM_LIBRARIES=true&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;notifications&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt;
+
+&lt;span class=&quot;na&quot;&gt;deploy&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;provider&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;pages&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;skip_cleanup&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$GITHUB_ACCESS_TOKEN&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 之前设置存放PAT的环境变量&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;target_branch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;master&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#需要将编译生成的文件push到哪个分支&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;local_dir&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;_site&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#要被push到master分支的目录&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;branch&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;gh-pages&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;然后就可以愉快的写blog然后push。剩下的就交给travis啦！&lt;/p&gt;</content><author><name>Martin Tong</name></author><category term="blog" /><category term="tools" /><summary type="html">项目用到的工具： travis：自动构建发布工具 github pages：免费的静态网站托管平台 jekyll：基于ruby的静态网页生成工具</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="/others/2020/07/11/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2020-07-11T08:16:25+00:00</published><updated>2020-07-11T08:16:25+00:00</updated><id>/others/2020/07/11/welcome-to-jekyll</id><content type="html" xml:base="/others/2020/07/11/welcome-to-jekyll.html">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+
+&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><category term="others" /><category term="tag3" /><category term="tag4" /><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry></feed>

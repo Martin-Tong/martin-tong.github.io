@@ -1,0 +1,11 @@
+.source-code { cursor: pointer; margin-left: 1em; }
+
+.source-code:hover { text-decoration: none; }
+
+pre[class*="language-"] { display: none; max-height: 480px; font-size: 0.8em !important; }
+
+pre.static[class*="language-"] { display: block; }
+
+.echarts-ex { width: 100%; height: 360px; overflow: hidden; }
+
+/*# sourceMappingURL=index.css.map */

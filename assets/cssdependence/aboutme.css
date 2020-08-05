@@ -1,0 +1,46 @@
+@charset "UTF-8";
+html { height: 100%; }
+
+@font-face { font-family: 'aboutme'; font-display: swap; src: url("//at.alicdn.com/t/webfont_23qmue74v1ri.eot"); /* IE9*/ src: url("//at.alicdn.com/t/webfont_23qmue74v1ri.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/webfont_23qmue74v1ri.woff2") format("woff2"), url("//at.alicdn.com/t/webfont_23qmue74v1ri.woff") format("woff"), url("//at.alicdn.com/t/webfont_23qmue74v1ri.ttf") format("truetype"), url("//at.alicdn.com/t/webfont_23qmue74v1ri.svg#思源黑体-极细") format("svg"); /* iOS 4.1- */ }
+
+body { height: 100%; }
+
+body .aboutme { width: 100%; height: 100%; }
+
+.aboutme-cover { position: absolute; width: 100%; height: 100%; z-index: 10; background-color: black; transform-origin: center; }
+
+.aboutme-cover svg { width: 100%; height: 100%; }
+
+.aboutme-cover svg path { fill: transparent; stroke: white; stroke-width: 3; }
+
+.aboutme-wraper { width: 100%; height: 100%; position: relative; background-color: black; }
+
+.aboutme-wraper canvas { position: absolute; z-index: 1; }
+
+div.swiper-container { width: 100%; height: 100%; z-index: 5; }
+
+div.swiper-container .swiper-wrapper { width: 100%; height: 100%; }
+
+.swiper-slide { font-family: aboutme; }
+
+.swiper-slide .swiper-slide-item-wrapper { position: absolute; width: 60%; top: 50%; left: 50%; transform: translate3d(-50%, -50%, 0); background-color: whitesmoke; border-radius: 12px; padding: 36px; }
+
+.swiper-slide .swiper-slide-item-wrapper .me { border-radius: 50%; width: 120px; height: 120px; float: left; overflow: hidden; margin-right: 36px; }
+
+.swiper-slide .swiper-slide-item-wrapper .me img { width: 100%; height: 100%; object-fit: cover; }
+
+.swiper-slide .swiper-slide-item-wrapper .me-info { overflow: auto; font-weight: bold; }
+
+.swiper-slide .swiper-slide-item-wrapper .me-info p:last-child { text-indent: 50%; }
+
+@media screen and (max-width: 600px) { .swiper-slide .swiper-slide-item-wrapper { width: 75%; } .swiper-slide .swiper-slide-item-wrapper .me { float: none; margin-bottom: 18px; } .swiper-slide .swiper-slide-item-wrapper .me-info p:last-child { text-indent: 40%; } }
+
+.swiper-pagination { color: white; position: absolute; }
+
+.swiper-pagination.swiper-pagination-fraction { width: auto; left: 0; bottom: auto; top: 50%; transform: translate3d(0, -50%, 0); }
+
+.swiper-pagination.swiper-pagination-fraction span.swiper-pagination-total { display: block; font-size: xx-large; }
+
+.swiper-pagination.swiper-pagination-fraction span.swiper-pagination-current { display: block; }
+
+/*# sourceMappingURL=aboutme.css.map */

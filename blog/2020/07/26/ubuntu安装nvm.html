@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh_CN"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="baidu-site-verification" content="2GRC8tOxQ2" /><meta name="keywords" content="ubuntu安装nvm 使用nvm管理node版本 nvm的安装"><link rel="icon" type="image/x-icon" href="/assets/avatar.ico">
+  <link rel="manifest" href="/manifest.json">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <script type="text/javascript">
+  (function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+  </script><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Ubuntu安装nvm | Martin Tong’s Front end life</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Ubuntu安装nvm" />
+<meta name="author" content="Martin Tong" />
+<meta property="og:locale" content="zh_CN" />
+<meta name="description" content="在使用 node的时候经常有需要用到不同版本 node的需求。为了方便管理或者切换安装的 node版本，使用 nvm是不错的选择。 本篇是 ubuntu上安装 nvm的记录。" />
+<meta property="og:description" content="在使用 node的时候经常有需要用到不同版本 node的需求。为了方便管理或者切换安装的 node版本，使用 nvm是不错的选择。 本篇是 ubuntu上安装 nvm的记录。" />
+<link rel="canonical" href="/blog/2020/07/26/ubuntu%E5%AE%89%E8%A3%85nvm.html" />
+<meta property="og:url" content="/blog/2020/07/26/ubuntu%E5%AE%89%E8%A3%85nvm.html" />
+<meta property="og:site_name" content="Martin Tong’s Front end life" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-26T00:00:00+00:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","headline":"Ubuntu安装nvm","dateModified":"2020-07-26T00:00:00+00:00","datePublished":"2020-07-26T00:00:00+00:00","url":"/blog/2020/07/26/ubuntu%E5%AE%89%E8%A3%85nvm.html","mainEntityOfPage":{"@type":"WebPage","@id":"/blog/2020/07/26/ubuntu%E5%AE%89%E8%A3%85nvm.html"},"author":{"@type":"Person","name":"Martin Tong"},"description":"在使用 node的时候经常有需要用到不同版本 node的需求。为了方便管理或者切换安装的 node版本，使用 nvm是不错的选择。 本篇是 ubuntu上安装 nvm的记录。","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Martin Tong's Front end life" /></head>
+
+  <style>
+    body {
+      background-position: 100% 50%;
+      background-repeat: no-repeat;
+      overflow-x: hidden;
+    }
+  </style>
+  
+  <body class="loading">
+    <style>
+    body.loading {
+        overflow-y: hidden;
+        position: relative;
+    }
+    .loading-mask {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        top: 0;
+        z-index: 99999;
+        background-color: #ffffff;
+        opacity: 1;
+    }
+    .loading-mask span {
+        display: block;
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 100%;
+        animation-name: pain-loading;
+        animation-duration: 2s;
+        animation-timing-function: ease;
+        animation-iteration-count: infinite;
+        transform-origin: 50% 50%;
+        box-sizing: content-box;
+        padding: 12px;
+    }
+    .loading-mask span:nth-child(1) {
+        width: 36px;
+        height: 36px;
+        border-top: 2px solid orange;
+        animation-delay: 0s;
+    }
+    .loading-mask span:nth-child(2) {
+        width: 60px;
+        height: 60px;
+        border-top: 2px solid purple;
+        animation-delay: -1s;
+        animation-direction: reverse;
+    }
+    .loading-mask span:nth-child(3) {
+        width: 84px;
+        height: 84px;
+        border-top: 2px solid red;
+        animation-delay: 0s;
+    }
+    .loading-mask span:nth-child(4) {
+        width: 108px;
+        height: 108px;
+        border-top: 2px solid blue;
+        animation-delay: -1s;
+        animation-direction: reverse;
+    }
+    @keyframes pain-loading {
+        0% {
+            transform: rotateZ(0);
+        }
+        
+        100% {
+            transform: rotateZ(360deg);
+        }
+    }
+</style>
+<div class="loading-mask">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+    <style>
+    #qrcode {
+        position: fixed;
+        left: 0;
+        bottom: 10%;
+        user-select: none;
+        color: #828282;
+    }
+    .qrcode-wraper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background-color: #f2f2f2;
+        justify-content: center;
+        cursor: pointer;
+        padding: 8px 0;
+        border-top-right-radius: 10%;
+        border-bottom-right-radius: 10%;
+        z-index: 999;
+    }
+    .qrcode-wraper span {
+        text-align: center;
+        font-weight: bold;
+        font-size: smaller;
+    }
+    .qrcode-img {
+        position: absolute;
+        width: 64px;
+        height: 64px;
+        top: 0px;
+        transition: all 0.5s linear;
+        z-index: 990;
+        opacity: 0;
+    }
+    .qrcode-wraper:hover .qrcode-img {
+        top: -64px;
+        opacity: 1;
+    }
+    @media screen and (max-width: 800px) {
+        #qrcode {
+            position: absolute;
+            bottom: 220px;
+            right: 0;
+            left: auto;
+        }
+        .qrcode-wraper span:nth-child(1) {
+            display: none;
+        }
+        .qrcode-img {
+            position: relative;
+            opacity: 1;
+        }
+        .qrcode-wraper:hover .qrcode-img {
+            top: 0;
+        }
+    }
+</style>
+<div id="qrcode">
+    <div class="qrcode-wraper">
+        <span>
+            <svg 
+                t="1595578306005" 
+                class="icon" 
+                viewBox="0 0 1024 1024"
+                version="1.1" 
+                xmlns="http://www.w3.org/2000/svg" 
+                p-id="1148" 
+                width="64" 
+                height="64">
+                <path d="M426.666667 469.333333H128c-25.6 0-42.666667-17.066667-42.666667-42.666666V128c0-25.6 17.066667-42.666667 42.666667-42.666667h298.666667c25.6 0 42.666667 17.066667 42.666666 42.666667v298.666667c0 25.6-17.066667 42.666667-42.666666 42.666666zM170.666667 384h213.333333V170.666667H170.666667v213.333333zM896 469.333333h-298.666667c-25.6 0-42.666667-17.066667-42.666666-42.666666V128c0-25.6 17.066667-42.666667 42.666666-42.666667h298.666667c25.6 0 42.666667 17.066667 42.666667 42.666667v298.666667c0 25.6-17.066667 42.666667-42.666667 42.666666z m-256-85.333333h213.333333V170.666667h-213.333333v213.333333zM426.666667 938.666667H128c-25.6 0-42.666667-17.066667-42.666667-42.666667v-298.666667c0-25.6 17.066667-42.666667 42.666667-42.666666h298.666667c25.6 0 42.666667 17.066667 42.666666 42.666666v298.666667c0 25.6-17.066667 42.666667-42.666666 42.666667z m-256-85.333334h213.333333v-213.333333H170.666667v213.333333zM896 789.333333h-149.333333c-25.6 0-42.666667-17.066667-42.666667-42.666666V640H640v106.666667c0 25.6-17.066667 42.666667-42.666667 42.666666s-42.666667-17.066667-42.666666-42.666666V597.333333c0-25.6 17.066667-42.666667 42.666666-42.666666h149.333334c25.6 0 42.666667 17.066667 42.666666 42.666666v106.666667H853.333333V597.333333c0-25.6 17.066667-42.666667 42.666667-42.666666s42.666667 17.066667 42.666667 42.666666v149.333334c0 25.6-17.066667 42.666667-42.666667 42.666666zM746.666667 938.666667H597.333333c-25.6 0-42.666667-17.066667-42.666666-42.666667s17.066667-42.666667 42.666666-42.666667h149.333334c25.6 0 42.666667 17.066667 42.666666 42.666667s-17.066667 42.666667-42.666666 42.666667z" p-id="1149"></path>
+                <path d="M302.933333 789.333333H251.733333c-8.533333 0-17.066667-8.533333-17.066666-17.066666v-51.2c0-8.533333 8.533333-17.066667 17.066666-17.066667h51.2c8.533333 0 17.066667 8.533333 17.066667 17.066667v51.2c0 8.533333-8.533333 17.066667-17.066667 17.066666zM302.933333 320H251.733333c-8.533333 0-17.066667-8.533333-17.066666-17.066667V251.733333c0-8.533333 8.533333-17.066667 17.066666-17.066666h51.2c8.533333 0 17.066667 8.533333 17.066667 17.066666v51.2c0 8.533333-8.533333 17.066667-17.066667 17.066667zM772.266667 320h-51.2c-8.533333 0-17.066667-8.533333-17.066667-17.066667V251.733333c0-8.533333 8.533333-17.066667 17.066667-17.066666h51.2c8.533333 0 17.066667 8.533333 17.066666 17.066666v51.2c0 8.533333-8.533333 17.066667-17.066666 17.066667zM896 938.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-8.533333-8.533333-12.8-17.066667-12.8-29.866667 0-12.8 4.266667-21.333333 12.8-29.866667 17.066667-17.066667 42.666667-17.066667 59.733334 0 8.533333 8.533333 12.8 21.333333 12.8 29.866667 0 12.8-4.266667 21.333333-12.8 29.866667-8.533333 8.533333-17.066667 12.8-29.866667 12.8z" p-id="1150"></path>
+            </svg>
+        </span>
+        <div class="qrcode-img">
+            <img src="/assets/imgdepedence/gongzhonghao.jpg" alt="二维码" title="二维码" />
+        </div>
+        <span>公众号</span>
+    </div>
+</div>
+
+
+    <!-- 文章主题start -->
+    <div class="content">
+    <header class="postpage-nav">
+      <div class="postpage-nav-wrap">
+      <div class="avatar">
+        <img src="/assets/avatar.png" />
+      </div>
+      <div class="menu">
+        <span class="hr"></span>
+        <span class="hr"></span>
+        <span class="hr"></span>
+      </div>
+      <nav id="postpage-nav">
+        <ul>
+          
+                    
+            
+              <li>
+                <a href="/">Home</a>
+              </li>
+                   
+          
+                    
+            
+              <li class="avtive">
+                <a href="/blog.html">Blog</a>
+              </li>
+                   
+          
+                    
+            
+              <li>
+                <a href="/share.html">Share</a>
+              </li>
+                   
+          
+                    
+            
+              <li>
+                <a href="/others.html">Others</a>
+              </li>
+                   
+          
+        </ul>
+      </nav>
+      </div>
+      </header>
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Ubuntu安装nvm</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-07-26T00:00:00+00:00" itemprop="datePublished">Jul 26, 2020
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Martin Tong</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <blockquote>
+  <p>在使用 node的时候经常有需要用到不同版本 node的需求。为了方便管理或者切换安装的 node版本，使用 <a href="https://github.com/nvm-sh/nvm">nvm</a>是不错的选择。
+本篇是 ubuntu上安装 nvm的记录。</p>
+</blockquote>
+
+<h4 id="安装"><strong>安装</strong></h4>
+
+<p>安装nvm前需要卸载原有的node和之前全局安装的依赖：</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#查看包是否安装及路径 ex:command -v node</span>
+<span class="c">#查看原全局安装的依赖 npm ls -g ex: /usr/local/lib/node_modules</span>
+<span class="nb">sudo </span>apt-get remove <span class="nt">--purge</span> node 
+<span class="nb">rm</span> <span class="nt">-r</span> node_modules路径</code></pre></figure>
+
+<p>安装nvm：</p>
+
+<p>官方推荐的方式是使用官方提供的脚本自动安装：</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#注意安装的目录为当前路径下的.nvm目录，即'~/.nvm'</span>
+curl <span class="nt">-o-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+wget <span class="nt">-qO-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+<span class="c">#然后添加下面脚本到~/.bash_profile, ~/.zshrc, ~/.profile, 或者 ~/.bashrc</span>
+<span class="nb">export </span><span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="k">${</span><span class="nv">XDG_CONFIG_HOME</span><span class="p">-</span><span class="k">}</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">printf</span> %s <span class="s2">"</span><span class="k">${</span><span class="nv">HOME</span><span class="k">}</span><span class="s2">/.nvm"</span> <span class="o">||</span> <span class="nb">printf</span> %s <span class="s2">"</span><span class="k">${</span><span class="nv">XDG_CONFIG_HOME</span><span class="k">}</span><span class="s2">/nvm"</span><span class="si">)</span><span class="s2">"</span>
+<span class="o">[</span> <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span> <span class="c"># This loads nvm</span></code></pre></figure>
+
+<p>但是不知道为什么，这个域名目前打不开，至少写本篇的时候打不开。所以，选择使用源码手动安装的方式：</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#可以自定义安装目录 ex：$HOME/path/to path/.nvm</span>
+<span class="nb">export </span><span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.nvm"</span> <span class="o">&amp;&amp;</span> <span class="o">(</span>
+  git clone https://github.com/nvm-sh/nvm.git <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">"</span>
+  <span class="nb">cd</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">"</span>
+  git checkout <span class="sb">`</span>git describe <span class="nt">--abbrev</span><span class="o">=</span>0 <span class="nt">--tags</span> <span class="nt">--match</span> <span class="s2">"v[0-9]*"</span> <span class="si">$(</span>git rev-list <span class="nt">--tags</span> <span class="nt">--max-count</span><span class="o">=</span>1<span class="si">)</span><span class="sb">`</span>
+<span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span>
+
+<span class="c">#然后添加下面脚本到~/.bashrc, ~/.profile, or ~/.zshrc使得每次登录系统时都能自动安装</span>
+<span class="nb">export </span><span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.nvm"</span>
+<span class="o">[</span> <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span> <span class="c"># This loads nvm</span></code></pre></figure>
+
+<p>到这里nvm安装完成，然后就可以通过nvm安装或者切换node版本。</p>
+
+<h4 id="问题"><strong>问题</strong></h4>
+
+<p>在使用nvm安装node的时候遇到的问题：</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#安装</span>
+nvm <span class="nb">install </span>10.16.3
+
+<span class="c">#出现的错误</span>
+<span class="nv">$&gt;</span>./configure <span class="nt">--prefix</span><span class="o">=</span>/home/martin/.nvm/versions/node/v10.16.3 &lt;
+./configure: 4: <span class="nb">exec</span>: python: not found
+nvm: <span class="nb">install </span>v10.16.3 failed!</code></pre></figure>
+
+<p>我本地安装的是<code class="language-plaintext highlighter-rouge">python3</code>，但是错误提示<code class="language-plaintext highlighter-rouge">exec: python: not found</code>。我的解决办法：<code class="language-plaintext highlighter-rouge">ln -fs /usr/bin/python3 /usr/bin/python</code>，如果出现权限限制加上<code class="language-plaintext highlighter-rouge">sudo</code>。</p>
+
+  </div><a class="u-url" href="/blog/2020/07/26/ubuntu%E5%AE%89%E8%A3%85nvm.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Martin Tong&#39;s Front end life</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Martin Tong&#39;s Front end life</li><li>MailTo: <a class="u-email" href="mailto:martin_tong@30erli.cn">martin_tong@30erli.cn</a></li><li><a href="/about.html">About me</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/Martin-Tong"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">Martin-Tong</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>一名半路出道的前端爱好者。热爱前端事业，关注前端技术，因为热爱所以把全部精力投入到前端相关的学习实践当中。 持续学习，温故知新，保持这份热情砥砺前行。</p>
+      </div>
+    </div>
+
+    <div class="footer-col-wrapper" style="text-align:center">
+      <p style="margin: 0;">为了节省CDN流量减少源站访问压力本博客使用的依赖全部为CDN资源，感谢
+        <a href='https://www.jsdelivr.com/' title="jsdelivr">♥ jsdelivr</a>
+      </p>
+      <b>Copyright © 2020</b> <span>豫ICP备19047041号</span>
+    </div>
+
+  </div>
+
+</footer>
+</div>
+    <!-- 文章主题end -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js" async crossorigin="anonymous"></script>
+    
+    <script src="/assets/index.js"></script>
+  </body>
+
+</html>

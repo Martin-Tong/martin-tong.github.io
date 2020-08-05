@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "index.css",
+	"sources": [
+		"index.scss"
+	],
+	"sourcesContent": [
+		".source-code {\n    cursor: pointer;\n    margin-left: 1em;\n    &:hover {\n        text-decoration: none;\n    }\n}\npre[class*=\"language-\"] {\n    display: none;\n    max-height: 480px;\n    font-size: 0.8em !important;\n    &.static {\n        display: block;\n    }\n}\n.echarts-ex {\n    width: 100%;\n    height: 360px;\n    overflow: hidden;\n}\n"
+	],
+	"names": [],
+	"mappings": "AAAA,AAAA,YAAY,CAAC,EACT,MAAM,EAAE,OAAO,EACf,WAAW,EAAE,GAAG,GAInB;;AAND,AAGI,YAHQ,CAGN,KAAK,CAAC,EACJ,eAAe,EAAE,IAAI,GACxB;;AAEL,AAAA,GAAG,CAAA,AAAA,KAAC,EAAO,WAAW,AAAlB,EAAoB,EACpB,OAAO,EAAE,IAAI,EACb,UAAU,EAAE,KAAK,EACjB,SAAS,EAAE,gBAAgB,GAI9B;;AAPD,AAII,GAJD,AAIE,OAAO,CAJT,AAAA,KAAC,EAAO,WAAW,AAAlB,EAIS,EACL,OAAO,EAAE,KAAK,GACjB;;AAEL,AAAA,WAAW,CAAC,EACR,KAAK,EAAE,IAAI,EACX,MAAM,EAAE,KAAK,EACb,QAAQ,EAAE,MAAM,GACnB"
+}
