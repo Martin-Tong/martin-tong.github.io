@@ -49,7 +49,7 @@
             direction: 'vertical',
             slidesPerView: 'auto',
             slideToClickedSlide: false,
-            shortSwipes: false,
+            shortSwipes: true,
             longSwipesRatio: 0.3,
             followFinger: false,
             hashNavigation: true,
